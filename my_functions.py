@@ -3,6 +3,27 @@ def add_one(x):
 
 from collections import deque
 
+def alignment_score(x, y, alignment):
+    """Score an alignment.
+
+    x, y -- sequences.
+    alignment -- an alignment of x and y.
+    """
+    score_gap = -1
+    score_same = +1
+    score_different = -1
+
+    score = 0
+    for i, j in alignment:
+        if (i is None) or (j is None):
+            score += score_gap
+        elif x[i] == y[j]:
+            score += score_same
+        elif x[i] != y[j]:
+            score += score_different
+
+    return score
+
 def all_alignments(x, y):
     """Return an iterable of all alignments of two
     sequences.
