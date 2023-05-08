@@ -2,6 +2,18 @@ def add_one(x):
     return x + 1
 
 from collections import deque
+from functools import partial
+
+def align_bf(x, y):
+    """Align two sequences, maximizing the
+    alignment score, using brute force.
+
+    x, y -- sequences.
+    """
+    return max(
+        all_alignments(x, y),
+        key=partial(alignment_score, x, y),
+    )
 
 def alignment_score(x, y, alignment):
     """Score an alignment.
